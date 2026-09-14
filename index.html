@@ -607,7 +607,10 @@ footer{background:#122028;color:var(--light);padding:clamp(48px,6vw,72px) 0 40px
         </div>
       </div>
       <div>
-        <form class="you" id="ertesites" novalidate>
+        <form class="you" id="ertesites" name="ertesites" method="POST" action="/" data-netlify="true" netlify-honeypot="website" novalidate>
+          <input type="hidden" name="form-name" value="ertesites">
+          <input type="hidden" name="lang" value="hu">
+          <p class="sr" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
           <strong>Értesítést kérek a következő mérésről</strong>
           <p>A 2027-es eredmény és a következő kérdőív megjelenéséről egy e-mailt küldünk. Mást nem.</p>
           <label class="sr" for="em">E-mail cím</label>
@@ -970,16 +973,20 @@ var ONE = {
 })();
 
 
-/* értesítés-űrlap (backend nélkül: e-mailt nyit meg) */
+/* értesítés-űrlap (Netlify Forms, AJAX) */
 (function(){
   var f=document.getElementById('ertesites'); if(!f) return;
+  var msg=document.getElementById('ertMsg'), btn=f.querySelector('button[type=submit]');
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var em=f.email.value.trim(), sz=f.szerep.value, msg=document.getElementById('ertMsg');
+    var em=f.email.value.trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Kérjük, érvényes e-mail címet adj meg.'; f.email.focus(); return; }
-    var body='Kérem, értesítsenek a Balaton Jó Hely Index következő méréséről.\n\nE-mail: '+em+'\nSzereplő: '+sz;
-    window.location.href='mailto:info@visitbalaton365.hu?subject='+encodeURIComponent('Értesítés kérése – Balaton Jó Hely Index')+'&body='+encodeURIComponent(body);
-    msg.textContent='Köszönjük! Megnyílik a leveleződ — a küldés után felvesszük a listára.';
+    btn.disabled=true; msg.textContent='Küldés…';
+    var data=new URLSearchParams(new FormData(f)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})
+      .then(function(r){ if(!r.ok) throw new Error(r.status);
+        msg.textContent='Köszönjük! Felvettünk a listára. A következő mérés megjelenésekor egy e-mailt küldünk.'; f.email.value=''; f.email.disabled=true; btn.hidden=true; })
+      .catch(function(){ msg.textContent='Nem sikerült elküldeni. Kérjük, próbáld újra, vagy írj az info@visitbalaton365.hu címre.'; btn.disabled=false; });
   });
 })();
 
