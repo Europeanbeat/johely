@@ -244,12 +244,24 @@ function Areas() {
 
 /* shared district selection between the cards island and the map island */
 const selListeners = new Set<(n: string) => void>();
+const shortName = (n: string) => n.replace(/ (járás|district)$/, "");
 let selNev = valid.slice().sort((a, b) => (b.ertek as number) - (a.ertek as number))[0]?.nev ?? "";
+{
+  const m = location.hash.match(/^#jaras=(.+)$/);
+  const hit = m ? valid.find((j) => shortName(j.nev) === decodeURIComponent(m[1])) : undefined;
+  if (hit) selNev = hit.nev;
+}
 function selectDistrict(nev: string, scroll = false) {
   selNev = nev;
   selListeners.forEach((fn) => fn(nev));
   window.__showJaras?.(nev);
-  if (scroll && window.innerWidth < 820) document.getElementById("jdetail")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+  const det = document.getElementById("jdetail");
+  if (det) { det.classList.remove("swap"); void det.offsetWidth; det.classList.add("swap"); }
+  history.replaceState(null, "", "#jaras=" + encodeURIComponent(shortName(nev)));
+  const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+  const phone = window.innerWidth < 700;
+  if (phone) document.querySelector<HTMLElement>(`.district-picker [data-jaras="${CSS.escape(nev)}"]`)?.scrollIntoView({ behavior, block: "nearest", inline: "center" });
+  if (scroll && window.innerWidth < 820) (phone ? document.querySelector<HTMLElement>(".district-picker") : det)?.scrollIntoView({ behavior, block: "start" });
 }
 function useSelected() {
   const [s, setS] = React.useState(selNev);
@@ -278,9 +290,18 @@ function Districts() {
   const withRes = noIndex.filter((j) => (j.n[gRes] || 0) > 0);
   const ordered = valid.slice().sort((x, y) => x.nev.localeCompare(y.nev, lang === "hu" ? "hu" : "en"));
   const short = (n: string) => n.replace(lang === "hu" ? " járás" : " district", "");
+  React.useEffect(() => { if (location.hash.startsWith("#jaras=")) selectDistrict(selNev); }, []);
+  const onKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const i = ordered.findIndex((j) => j.nev === sel);
+    const next = e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? ordered.length - 1 : -1;
+    if (next < 0 || next >= ordered.length) return;
+    e.preventDefault();
+    selectDistrict(ordered[next].nev);
+    e.currentTarget.querySelector<HTMLButtonElement>(`[data-jaras="${CSS.escape(ordered[next].nev)}"]`)?.focus();
+  };
   return (
     <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+      <div className="district-picker grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3" role="tablist" aria-label={lang === "hu" ? "Járás választása" : "Choose a district"} onKeyDown={onKey}>
         {ordered.map((j, i) => {
           const d = (j.ertek as number) - D.index;
           const band = d >= 2 ? "up" : d <= -2 ? "down" : "mid";
@@ -295,7 +316,11 @@ function Districts() {
           return (
             <Reveal key={j.nev} i={i}><button
               type="button"
-              aria-pressed={pressed}
+              role="tab"
+              aria-selected={pressed}
+              aria-controls="jdetail"
+              tabIndex={pressed ? 0 : -1}
+              data-jaras={j.nev}
               onClick={() => pick(j.nev)}
               className={`flex h-full w-full flex-col justify-between gap-3 rounded-2xl p-4 min-h-[124px] text-left transition-[box-shadow,transform] outline-none focus-visible:ring-3 focus-visible:ring-ring/50 ${surface} ${pressed ? "ring-2 ring-[#D9A03C]" : ""}`}
             >
@@ -305,12 +330,12 @@ function Districts() {
               <span className="flex items-end justify-between gap-2">
                 <span>
                 <span className="block text-[34px] font-medium leading-none tracking-[-0.03em] tabular-nums"><CountUp value={j.ertek as number} /></span>
-                <span className={`mt-1.5 flex items-center gap-1 text-[12px] whitespace-nowrap ${sub}`}>
+                <span className={`dp-delta mt-1.5 flex items-center gap-1 text-[12px] whitespace-nowrap ${sub}`}>
                   <Icon className="h-3.5 w-3.5" />
                   {(d >= 0 ? "+" : "−") + num(Math.abs(d))} {S.pts}
                 </span>
                 </span>
-                <ScoreRing v={j.ertek as number} size={36} stroke={4} onDark={pressed || band !== "mid"} />
+                <span className="dp-ring"><ScoreRing v={j.ertek as number} size={36} stroke={4} onDark={pressed || band !== "mid"} /></span>
               </span>
             </button></Reveal>
           );
