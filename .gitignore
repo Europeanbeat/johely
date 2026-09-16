@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+islands/node_modules/
+johely.code-workspace
+dist/
