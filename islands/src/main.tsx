@@ -6,8 +6,11 @@ import { Dashboard } from "./dashboard";
 import { Stats05 } from "./stats-cards-with-links";
 import { WeeklyExpenseCard } from "./weekly-expense-card";
 import { DistrictMap } from "./map";
+import geo from "./data/jarasok.geojson";
 import { Timeline } from "./timeline";
 import { Testimonials, type Testimonial } from "./testimonials";
+import { ServiceCarousel, type Service } from "./services-card";
+import { Megaphone, Users, MapPinned, Car, FileText } from "lucide-react";
 import { Reveal, CountUp } from "./motion";
 import { CircleProgress } from "./circle-progress";
 import { useInView } from "framer-motion";
@@ -41,11 +44,15 @@ const S =
         ofQuestions: "kérdésből",
         pts: "pont",
         noRes: "lakossági válasz nélkül",
+        vsShort: "a térségihez képest",
+        naTitle: "Nem készült index — kevés adat, nem rossz eredmény",
+        listLabel: "Járások",
         more: "Részletek →",
-        noIndex: (names: string, extra: string) =>
-          `Nem készült index: ${names} járás — kevés adat, nem rossz eredmény. ${extra}`,
+        noIndex: (names: string[], extra: string) =>
+          `Négy járásban nem készült index: ${(() => { const art = (n: string) => (/^[AÁEÉIÍOÓÖŐUÚÜŰ]/i.test(n) ? "az " : "a ") + n; const l = names.map(art); return l.slice(0, -1).join(", ") + " és " + l[l.length - 1]; })()} járásban. Ennek nem rossz eredmény az oka, hanem az, hogy innen túl kevés válasz érkezett. ${extra}`,
         noIndexExtra: (j: District) =>
-          `A ${j.nev}ból ${j.n[gRes]} lakossági válasz érkezett, szolgáltatói és vendégválasz nélkül; egy nézőpont kevés az indexhez.`,
+          `A ${j.nev}ból például ${j.n[gRes]} lakossági válasz jött, de szolgáltatói és vendégválasz egy sem, egyetlen nézőpontból pedig nem számolható index.`,
+        starNote: "A csillaggal (*) jelölt járásban túl kevés lakossági válasz érkezett, ott az index a szolgáltatók és a vendégek válaszaiból készült.",
         gap: "pont rés",
         mapLegend: ["térségi átlag fölött, 2+ pont", "átlag fölött", "átlag alatt", "átlag alatt, 2+ pont"],
         noData: "nincs elég adat",
@@ -83,11 +90,15 @@ const S =
         ofQuestions: "questions",
         pts: "points",
         noRes: "without resident responses",
+        vsShort: "vs. the regional value",
+        naTitle: "No index — too little data, not a poor result",
+        listLabel: "Districts",
         more: "Details →",
-        noIndex: (names: string, extra: string) =>
-          `No index: ${names} districts — too little data, not a poor result. ${extra}`,
+        noIndex: (names: string[], extra: string) =>
+          `Four districts have no index: ${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}. This is not a poor result; too few answers came from them. ${extra}`,
         noIndexExtra: (j: District) =>
-          `${j.n[gRes]} resident responses came from the ${j.nev}, with no business or visitor responses; one perspective is not enough for an index.`,
+          `The ${j.nev}, for example, sent ${j.n[gRes]} resident responses but none from businesses or visitors, and a single perspective is not enough for an index.`,
+        starNote: "In the district marked with an asterisk (*), too few residents responded, so its index is based on business and visitor responses.",
         gap: "point gap",
         mapLegend: ["2+ points above the regional average", "above average", "below average", "2+ points below"],
         noData: "not enough data",
@@ -260,13 +271,48 @@ function selectDistrict(nev: string, scroll = false) {
   history.replaceState(null, "", "#jaras=" + encodeURIComponent(shortName(nev)));
   const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
   const phone = window.innerWidth < 700;
-  if (phone) document.querySelector<HTMLElement>(`.district-picker [data-jaras="${CSS.escape(nev)}"]`)?.scrollIntoView({ behavior, block: "nearest", inline: "center" });
-  if (scroll && window.innerWidth < 820) (phone ? document.querySelector<HTMLElement>(".district-picker") : det)?.scrollIntoView({ behavior, block: "start" });
+  if (scroll && window.innerWidth < 820 && !phone) det?.scrollIntoView({ behavior, block: "start" });
+  else if (scroll && det && window.innerWidth >= 820) {
+    // Desktop: map and cards stay where they are; if the panel below is out of sight, nudge just enough to show its top
+    const top = det.getBoundingClientRect().top;
+    const room = window.innerHeight - 220;
+    if (top > room) window.scrollBy({ top: top - room, behavior });
+  }
 }
 function useSelected() {
   const [s, setS] = React.useState(selNev);
   React.useEffect(() => { selListeners.add(setS); return () => { selListeners.delete(setS); }; }, []);
   return s;
+}
+
+const SIL: Record<string, string> = (() => {
+  const K = Math.cos((46.9 * Math.PI) / 180);
+  const out: Record<string, string> = {};
+  for (const f of (geo as any).features as any[]) {
+    const g = f.geometry;
+    const polys: number[][][] = g.type === "Polygon" ? g.coordinates : g.coordinates.flat();
+    const pts = polys.flat();
+    const xs = pts.map((q) => q[0] * K), ys = pts.map((q) => q[1]);
+    const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+    const sc = 92 / Math.max(maxX - minX, maxY - minY);
+    const ox = (100 - (maxX - minX) * sc) / 2, oy = (100 - (maxY - minY) * sc) / 2;
+    out[f.properties.nev] = polys.map((ring) => "M" + ring.map(([x, y]) => `${(ox + (x * K - minX) * sc).toFixed(1)},${(oy + (maxY - y) * sc).toFixed(1)}`).join("L") + "Z").join("");
+  }
+  return out;
+})();
+const phoneMQ = () => window.matchMedia("(max-width: 700px)");
+function placeDetail(sel: string, collapsed: boolean) {
+  const det = document.getElementById("jdetail");
+  if (!det) return;
+  if (phoneMQ().matches) {
+    const slot = document.querySelector<HTMLElement>(`.dl-slot[data-slot="${CSS.escape(sel)}"]`);
+    if (slot && det.parentElement !== slot) slot.appendChild(det);
+    det.hidden = collapsed;
+  } else {
+    const home = document.getElementById("island-districts")?.parentElement;
+    if (home && det.parentElement !== home) home.appendChild(det);
+    det.hidden = false;
+  }
 }
 
 /* ── 6. Real map ── */
@@ -291,6 +337,18 @@ function Districts() {
   const ordered = valid.slice().sort((x, y) => x.nev.localeCompare(y.nev, lang === "hu" ? "hu" : "en"));
   const short = (n: string) => n.replace(lang === "hu" ? " járás" : " district", "");
   React.useEffect(() => { if (location.hash.startsWith("#jaras=")) selectDistrict(selNev); }, []);
+  const [collapsed, setCollapsed] = React.useState(false);
+  React.useEffect(() => {
+    placeDetail(sel, collapsed);
+    const mq = phoneMQ(); const on = () => placeDetail(sel, collapsed);
+    mq.addEventListener("change", on); return () => mq.removeEventListener("change", on);
+  }, [sel, collapsed]);
+  const toggle = (nev: string) => {
+    if (sel === nev) { setCollapsed((c) => !c); return; }
+    setCollapsed(false); selectDistrict(nev);
+    const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+    requestAnimationFrame(() => document.querySelector<HTMLElement>(`.dl[data-jaras="${CSS.escape(nev)}"]`)?.scrollIntoView({ behavior, block: "start" }));
+  };
   const onKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const i = ordered.findIndex((j) => j.nev === sel);
     const next = e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? ordered.length - 1 : -1;
@@ -341,10 +399,43 @@ function Districts() {
           );
         })}
       </div>
-      <p className="text-[13px] text-muted-foreground">
-        {S.noIndex(noIndex.map((j) => short(j.nev)).join(", "), withRes.length ? S.noIndexExtra(withRes[0]) : "")}
-        {" "}* {S.noRes}.
+      <p className="dp-note text-[13px] text-muted-foreground">
+        {S.noIndex(noIndex.map((j) => short(j.nev)), withRes.length ? S.noIndexExtra(withRes[0]) : "")}
+        {" "}{S.starNote}
       </p>
+      <div className="district-list" aria-label={S.listLabel}>
+        {ordered.map((j, i) => {
+          const d = (j.ertek as number) - D.index;
+          const band = d >= 2 ? "up" : d <= -2 ? "down" : "mid";
+          const open = sel === j.nev && !collapsed;
+          return (
+            <section key={j.nev} className={`dl ${i % 2 ? "right" : "left"} ${band}${open ? " open" : ""}`} data-jaras={j.nev}>
+              <h3>
+                <button type="button" className="dl-head" aria-expanded={open} aria-controls="jdetail" onClick={() => toggle(j.nev)}>
+                  <span className="dl-sil"><svg viewBox="0 0 100 100" aria-hidden="true"><path d={SIL[j.nev] || ""} /></svg></span>
+                  <span className="dl-txt">
+                    <span className="dl-name">{short(j.nev)}{(j.n[gRes] || 0) < 15 ? "*" : ""}</span>
+                    <span className="dl-score">{num(j.ertek as number)}</span>
+                    <span className="dl-delta">{(d >= 0 ? "+" : "−") + num(Math.abs(d))} {S.pts} {S.vsShort}</span>
+                  </span>
+                  <span className="dl-chev" aria-hidden="true" />
+                </button>
+              </h3>
+              <div className="dl-slot" data-slot={j.nev} />
+            </section>
+          );
+        })}
+        <div className="dl-na">
+          <h4>{S.naTitle}</h4>
+          {noIndex.map((j) => (
+            <div key={j.nev}>
+              <span className="dl-sil"><svg viewBox="0 0 100 100" aria-hidden="true"><path d={SIL[j.nev] || ""} /></svg></span>
+              <span><b>{short(j.nev)}</b><br />{S.noData} · {gKeys.map((k) => `${k} ${j.n[k] || 0}`).join(" · ")}</span>
+            </div>
+          ))}
+        </div>
+        <p className="dl-foot">* {S.noRes}. {S.allValues}</p>
+      </div>
     </div>
   );
 }
@@ -355,7 +446,7 @@ function Gaps() {
   D.alindexek.forEach((x) => (byN[x.nev] = x.csoportok));
   return (
     <Stats05
-      cols={1}
+      cols={3}
       data={S.gaps.map(([nev, a, b, txt]) => {
         const d = Math.abs(byN[nev][a] - byN[nev][b]);
         return {
@@ -442,6 +533,23 @@ function QuotesIsland() {
   return <Testimonials items={items} eyebrow={eyebrow} note={note} />;
 }
 
+/* ── 9. The five first-year commitments as a card carousel; text comes from the hidden .steps list ── */
+function StepsIsland() {
+  const src = document.querySelector<HTMLElement>("#program .steps");
+  if (!src) return null;
+  const icons = [Megaphone, Users, MapPinned, Car, FileText];
+  const tones = ["bg-secondary text-foreground", "bg-primary text-primary-foreground", "bg-secondary text-foreground", "bg-destructive text-white", "bg-primary text-primary-foreground"];
+  const services: Service[] = [...src.children].map((el, i) => ({
+    number: el.querySelector(".num")?.textContent?.trim() ?? String(i + 1).padStart(2, "0"),
+    title: el.querySelector("strong")?.textContent?.trim() ?? "",
+    description: el.querySelector(":scope > div > span")?.textContent?.trim() ?? "",
+    measure: el.querySelector("em")?.textContent?.trim() ?? undefined,
+    icon: icons[i % icons.length],
+    tone: tones[i % tones.length],
+  }));
+  return <ServiceCarousel services={services} prevLabel={lang === "hu" ? "Előző" : "Previous"} nextLabel={lang === "hu" ? "Következő" : "Next"} />;
+}
+
 const mounts: [string, React.ReactNode][] = [
   ["island-dashboard", <DashboardIsland />],
   ["island-areas", <Areas />],
@@ -451,6 +559,7 @@ const mounts: [string, React.ReactNode][] = [
   ["island-map", <MapIsland />],
   ["island-timeline", <TimelineIsland />],
   ["island-quotes", <QuotesIsland />],
+  ["island-steps", <StepsIsland />],
 ];
 mounts.forEach(([id, node]) => {
   const el = document.getElementById(id);

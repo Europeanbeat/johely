@@ -65,8 +65,8 @@ export function Stats05({ data, cols = 3 }: { data: LinkStat[]; cols?: 1 | 2 | 3
     <div className="flex items-center justify-center w-full">
       <dl className={cn("grid grid-cols-1 gap-4 w-full", cols === 3 && "sm:grid-cols-2 lg:grid-cols-3", cols === 2 && "sm:grid-cols-2")}>
         {data.map((item) => (
-          <Card key={item.name} className="p-0 gap-0">
-            <CardContent className="p-6">
+          <Card key={item.name} className="p-0 gap-0 h-full flex flex-col">
+            <CardContent className="p-6 flex-1">
               <dd className="flex items-start justify-between space-x-2">
                 <span className="min-w-0 text-sm font-semibold text-foreground">{item.name}</span>
                 <span

@@ -8,6 +8,8 @@
     "@tailwindcss/cli": "^4.3.3",
     "@types/leaflet": "^1.9.22",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "embla-carousel-wheel-gestures": "^8.1.0",
     "esbuild": "^0.28.2",
     "framer-motion": "^13.3.0",
     "leaflet": "^1.9.4",

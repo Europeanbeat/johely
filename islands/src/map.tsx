@@ -86,7 +86,11 @@ export function DistrictMap({ districts, index, selected, onSelect, strings }: P
     }).addTo(map);
 
     // Labels for tiny districts overlap the lake; nudge the lake-side ones by fitting bounds with padding
-    map.fitBounds(layer.getBounds(), { padding: [12, 12] });
+    // Frame the lake and the seven districts with an index, not the far south-west ones
+    const focus = L.latLngBounds([]);
+    layer.eachLayer((l) => { const nev = (l as L.GeoJSON & { feature?: GeoJSON.Feature }).feature?.properties?.nev; if (byHu[nev]?.valid) focus.extend((l as L.Polygon).getBounds()); });
+    focus.extend(water.getBounds());
+    map.fitBounds(focus.isValid() ? focus : layer.getBounds(), { padding: [18, 18] });
     map.setMaxBounds(layer.getBounds().pad(0.4));
 
     const apply = () => {
@@ -110,7 +114,7 @@ export function DistrictMap({ districts, index, selected, onSelect, strings }: P
 
   return (
     <div>
-      <div ref={ref} className="districtmap rounded-xl overflow-hidden border border-border" style={{ height: "clamp(320px, 46vw, 520px)" }} aria-label={lang === "hu" ? "Járási térkép" : "District map"} />
+      <div ref={ref} className="districtmap rounded-xl overflow-hidden border border-border" style={{ height: "clamp(300px, 31vw, 420px)" }} aria-label={lang === "hu" ? "Járási térkép" : "District map"} />
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-muted-foreground">
         <span className="inline-flex items-center gap-2"><i className="inline-block h-3 w-3 rounded-sm" style={{ background: BAND.c1 }} />{strings.legend[0]}</span>
         <span className="inline-flex items-center gap-2"><i className="inline-block h-3 w-3 rounded-sm" style={{ background: BAND.c2 }} />{strings.legend[1]}</span>
