@@ -478,6 +478,9 @@ nav.addEventListener('click',function(e){ if(e.target.tagName==='A'){ nav.classL
 (document.getElementById('tValasz')||{}).textContent = D.valaszok;
 (document.getElementById('kValaszP')||{}).textContent = D.csoportN['lakossági']+' helyben élő és nyaralótulajdonos, '+D.csoportN['szolgáltatói']+' turisztikai vállalkozás és '+D.csoportN['vendég']+' vendég értékelte a térséget '+D.ev+'-ban. Ugyanaz a téma több csoportnál is szerepel, így az eltérő nézőpontok összevethetők.';
 (document.getElementById('gaugeNum')||{}).textContent = num(D.index);
+var vals=D.alindexek.map(function(a){return a.ertek;});
+(document.getElementById('eMin')||{}).textContent=num(Math.min.apply(null,vals));
+(document.getElementById('eMax')||{}).textContent=num(Math.max.apply(null,vals));
 var heroIndex = document.getElementById('heroIndexGauge');
 if (heroIndex) {
   var heroValue = Math.max(0, Math.min(100, D.index));
