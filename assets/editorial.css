@@ -104,3 +104,7 @@ footer .fgrid a.flogo:hover img{opacity:.85}
 
 .logoband img[alt="Novitatis"]{height:44px}
 @media(max-width:700px){.logoband img[alt="Novitatis"]{height:32px}}
+@media(max-width:700px){footer .fgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}footer .fgrid>div{min-width:0}footer .fgrid a,footer .fgrid p,footer .fgrid span{overflow-wrap:anywhere}.jvals .chip{white-space:normal;overflow-wrap:anywhere}#island-donut .mt-6.grid{grid-template-columns:minmax(0,1fr)}.kcard{min-height:0}.kcard .num{font-size:60px}}
+@media(max-width:520px){#island-areas .grid.grid-cols-2{grid-template-columns:minmax(0,1fr)}.tw-island .area-tile{min-height:0}.tw-island .area-tile .text-\[44px\]{font-size:38px}}
+@media(max-width:480px){.band .wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.band .wrap>div{padding:18px 16px;min-height:0;gap:12px}.band .num{font-size:40px}.band span:last-child{font-size:13.5px;line-height:1.45}}
+@media(max-width:700px){footer .fgrid a.flogo{width:auto;max-width:100%}footer .fgrid a.flogo img{max-width:100%;height:auto}footer .fgrid a.flogo img[src$="novitatis-white.png"]{width:190px}}
