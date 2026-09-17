@@ -20,7 +20,7 @@ for (const file of ['index.html', 'en/index.html']) {
       if (attr.length > 1) assert(ids.includes(attr.slice(1)), `${file}: unresolved ${attr}`);
       continue;
     }
-    await access(new URL(attr.split('#')[0], url));
+    await access(new URL(attr.split(/[?#]/)[0], url));
   }
   console.log(`${file}: data, islands, IDs, anchors and local assets OK`);
 }
