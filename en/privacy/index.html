@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>I want to take part in the next survey — Balaton Good Place Index</title>
+<title>Privacy notice — Balaton Good Place Index</title>
 <meta name="description" content="The Balaton Good Place Index measures the state of the Lake Balaton Resort Area as perceived by residents, tourism businesses and visitors. The 2026 baseline value is 64.0 points, based on 1,048 valid responses.">
-<link rel="canonical" href="https://balatonjohelyindex.hu/en/notify/">
-<link rel="alternate" hreflang="hu" href="https://balatonjohelyindex.hu/ertesites/">
-<link rel="alternate" hreflang="en" href="https://balatonjohelyindex.hu/en/notify/">
-<link rel="alternate" hreflang="x-default" href="https://balatonjohelyindex.hu/ertesites/">
+<link rel="canonical" href="https://balatonjohelyindex.hu/en/privacy/">
+<link rel="alternate" hreflang="hu" href="https://balatonjohelyindex.hu/">
+<link rel="alternate" hreflang="en" href="https://balatonjohelyindex.hu/en/">
+<link rel="alternate" hreflang="x-default" href="https://balatonjohelyindex.hu/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="hu_HU">
 <meta property="og:site_name" content="Balaton Good Place Index">
-<meta property="og:title" content="I want to take part in the next survey — Balaton Good Place Index">
+<meta property="og:title" content="Privacy notice — Balaton Good Place Index">
 <meta property="og:description" content="The 2026 baseline: 64.0 points. Eight dimensions, three stakeholder groups, more than 1,000 responses from the eleven districts of the Lake Balaton Resort Area.">
-<meta property="og:url" content="https://balatonjohelyindex.hu/en/notify/">
+<meta property="og:url" content="https://balatonjohelyindex.hu/en/privacy/">
 <meta property="og:image" content="https://balatonjohelyindex.hu/assets/og-2026-en.png?v=4">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -394,25 +394,101 @@ footer .fbot{color:var(--light)}
 @media(max-width:820px){footer .fbig{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:700px){footer{border-radius:22px 22px 0 0;padding-top:52px}footer .fgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 20px}footer .fgrid>div:first-child{grid-column:1/-1}footer .fgrid a,footer .fgrid p{overflow-wrap:anywhere}}
 
-.you.cta-tile .btn{margin-top:16px;width:auto;padding:0 26px}
 
-.formpage{padding:clamp(56px,8vw,96px) 0 clamp(56px,8vw,96px)}
-.formpage .fp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
-.formpage .fp h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.1;letter-spacing:-.03em;margin:0 0 18px}
-.formpage .fp .lead{max-width:44ch;margin-bottom:24px}
-.formpage .back{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--teal);font-weight:600;text-decoration:none}
-.formpage .back::before{content:"\2190"}
-@media(max-width:900px){.formpage .fp{grid-template-columns:minmax(0,1fr)}}
+/* District summary download: one wide card under the map and the district list */
+.jpdf{display:flex;align-items:center;gap:18px;margin-top:clamp(18px,2vw,26px);padding:20px clamp(20px,3vw,32px);border:1px solid var(--line);border-radius:var(--r);background:#fff;box-shadow:var(--shadow)}
+.jpdf .ic{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--mist);color:var(--deep);font-size:12px;font-weight:700;letter-spacing:.04em}
+.jpdf strong{display:block;font-family:var(--serif);font-size:19px;line-height:1.25;color:var(--ink)}
+.jpdf span.s{display:block;margin-top:3px;font-size:14.5px;color:var(--muted)}
+.jpdf .b{margin-left:auto;flex:none}
+.jpdfs{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.jpdfs strong{display:block;font-size:15px;color:var(--ink)}
+.jpdfs p{margin:4px 0 12px;font-size:14px;color:var(--muted)}
+.jpdfs ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.jpdfs li>a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--deep);font-size:13.5px;color:var(--deep);background:#fff;text-decoration:none}
+.jpdfs li>a:hover{background:var(--deep);color:#fff}
+@media(max-width:700px){.jpdf{flex-wrap:wrap;gap:14px}.jpdf .b{margin-left:0;width:100%;justify-content:center}}
+
+/* Notification form at the bottom of the page (same form as on the form page) */
+.contact{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line)}
+.contact .fp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.contact .h2{margin-bottom:18px}
+.contact .lead{max-width:44ch;margin-bottom:14px}
+.contact .mailto{display:inline-flex;align-items:center;min-height:44px;color:var(--teal);font-weight:600;text-decoration:none;font-size:17px}
+.contact .mailto:hover{color:var(--deep)}
+@media(max-width:900px){.contact .fp{grid-template-columns:minmax(0,1fr)}}
+
+/* The five first-year commitments side by side instead of a vertical list */
+#program .pgrid{display:block}
+#program .steps{border-top:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+#program .steps>div:nth-child(5){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:6px 32px;align-items:start}
+#program .steps>div:nth-child(5)>div{display:contents}
+#program .steps>div:nth-child(5) .num{grid-column:1;grid-row:1;margin-bottom:6px}
+#program .steps>div:nth-child(5) strong{grid-column:1;grid-row:2;font-size:19px;align-self:start}
+#program .steps>div:nth-child(5) span{grid-column:2;grid-row:1/5;align-self:center}
+#program .steps>div:nth-child(5) em{grid-column:1;grid-row:3}
+#program .steps>div{display:block;padding:22px 20px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+#program .steps .num{display:block;margin-bottom:10px;font-size:26px;color:var(--ochre)}
+#program .steps strong{margin-bottom:6px;font-size:16px;line-height:1.3}
+#program .steps span{font-size:14px;line-height:1.55}
+#program .steps em{margin-top:10px}
+
+
+@media(max-width:700px){#program .steps{grid-template-columns:minmax(0,1fr)}#program .steps>div:nth-child(5){display:block}#program .steps>div:nth-child(5)>div{display:block}}
+
+/* District profile spans the full width, under both the list and the map */
+#jarasok .jgrid>#jdetail{grid-column:1/-1;margin-top:4px}
+
+/* District list as tall as the map beside it */
+@media(min-width:901px){
+  #jarasok .jgrid{align-items:stretch}
+  #jarasok .jright{height:100%}
+  #jarasok .jlist{height:100%;justify-content:space-between}
+  #jarasok .jlist .jbtn{flex:1 1 auto;align-content:center}
+  #jarasok .jlist .jnote{margin-top:auto}
+}
+
+/* Downloads section */
+#letoltesek .dl2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:28px}
+#letoltesek .dl2 a{display:flex;align-items:center;gap:18px;padding:20px clamp(18px,2.4vw,28px);border:1px solid var(--line);border-radius:var(--r);background:#fff;text-decoration:none;color:inherit}
+#letoltesek .dl2 a:hover{border-color:var(--mid)}
+#letoltesek .dl2 .ic{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--mist);color:var(--deep);font-size:12px;font-weight:700;letter-spacing:.04em}
+#letoltesek .dl2 strong{display:block;font-family:var(--serif);font-size:19px;color:var(--ink)}
+#letoltesek .dl2 span{display:block;margin-top:3px;font-size:14px;color:var(--muted)}
+#letoltesek .dl2 .b{margin-left:auto;flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--deep);color:#fff;font-size:14px;font-weight:600}
+#letoltesek .jpdfs{margin-top:0;padding-top:0;border-top:0}
+@media(max-width:820px){#letoltesek .dl2{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){#letoltesek .dl2 a{flex-wrap:wrap;gap:12px}#letoltesek .dl2 .b{margin-left:0;width:100%;justify-content:center}}
+
+/* Downloads dropdown in the navigation */
+header.top nav.main .nav-dd{position:relative}
+header.top nav.main .nav-dd>summary{display:flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;color:var(--ink);cursor:pointer;list-style:none;white-space:nowrap}
+header.top nav.main .nav-dd>summary::-webkit-details-marker{display:none}
+header.top nav.main .nav-dd>summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+header.top nav.main .nav-dd[open]>summary,header.top nav.main .nav-dd>summary:hover{background:var(--deep);color:#fff}
+header.top nav.main .nav-dd .dd{position:absolute;left:0;top:calc(100% + 10px);min-width:260px;padding:8px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(18,32,40,.12);display:flex;flex-direction:column;gap:2px;z-index:70}
+header.top nav.main .nav-dd .dd a{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:12px;font-size:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
+header.top nav.main .nav-dd .dd a:hover{background:var(--soft)}
+@media(max-width:1180px){
+  header.top nav.main .nav-dd .dd{position:static;min-width:0;border:0;box-shadow:none;padding:0 0 0 12px}
+  header.top nav.main .nav-dd>summary{padding:12px 16px;font-size:15px}
+}
+
+.legal{padding:clamp(56px,8vw,96px) 0}
+.legal .wrap{max-width:800px}
+.legal h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.1;letter-spacing:-.03em;margin:0 0 18px}
+.legal h2{font-family:var(--serif);font-weight:700;font-size:clamp(19px,1.8vw,23px);line-height:1.25;margin:34px 0 10px}
+.legal p{font-size:16.5px;line-height:1.65;color:var(--ink-2);margin:0 0 12px}
+.legal p strong{color:var(--ink)}
+.legal .back{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:28px;color:var(--teal);font-weight:600;text-decoration:none}
+.legal .back::before{content:"\2190"}
+.you .consent{display:flex;gap:10px;align-items:flex-start;margin:0 0 14px;font-size:13.5px;line-height:1.45}
+.you .consent input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--ochre)}
+.you .consent a{color:#fff;text-decoration:underline}
 
 /* Headings: never hyphenate or split words; balance the lines instead */
 h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal;text-wrap:balance}
 @media(max-width:1360px){header.top nav.main>a,header.top nav.main .nav-dd>summary{padding:0 8px;font-size:12.5px}header.top .nav-btn{padding:0 13px;font-size:13px}header.top .wrap{gap:10px}}
-
-/* Consent line under the form */
-.you .consent{display:flex;gap:10px;align-items:center;margin:4px 0 16px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
-.you .consent input{margin:0;width:18px;height:18px;flex:none;accent-color:var(--deep);cursor:pointer}
-.you .consent a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
-.you .consent a:hover{color:var(--deep)}
 </style>
 </head>
 <body>
@@ -421,41 +497,51 @@ h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:man
     <a class="brand" href="../index.html#top"><span class="mark"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 30c-1 0-9.5-9.6-9.5-16A9.5 9.5 0 0 1 25.5 14c0 6.4-8.5 16-9.5 16z" fill="#0E4A57"/><path d="M10.5 14.2c2-2.2 4.2-2.2 6 0s3.8 2.2 5.6 0" stroke="#B9D8DC" stroke-width="2.2" stroke-linecap="round"/><path d="M11.6 18.2c1.6-1.8 3.4-1.8 4.9 0s3.1 1.8 4.6 0" stroke="#63A8B5" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="brand-name">Balaton<span>Good Place Index</span></span></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="main" id="nav" aria-label="Main navigation">
-<a href="../index.html#mi-ez">The index</a><a href="../index.html#eredmenyek">Results</a><a href="../index.html#nezopontok">Perspectives</a><a href="../index.html#jarasok">Districts</a><a href="../index.html#kovetkeztetesek">Conclusions</a><details class="nav-dd"><summary>Downloads</summary><div class="dd"><a href="../index.html#letoltesek">Downloads</a><a href="../../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download>The full study (PDF)</a><a href="../../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener" download>Executive summary (PDF)</a><a href="../index.html#letoltesek">District summaries</a></div></details><a href="../index.html#modszertan">Method</a><a href="../index.html#gyik">FAQ</a><a href="../index.html#kapcsolat">Contact</a><a class="nav-cta" href="#ertesites">I want to take part in the next survey</a></nav>
-    <a class="nav-btn" href="#ertesites">I want to take part in the next survey</a>
-    <a class="lang" href="../../ertesites/index.html" hreflang="hu" lang="hu" title="Magyar változat">HU</a>
+<a href="../index.html#mi-ez">The index</a><a href="../index.html#eredmenyek">Results</a><a href="../index.html#nezopontok">Perspectives</a><a href="../index.html#jarasok">Districts</a><a href="../index.html#kovetkeztetesek">Conclusions</a><details class="nav-dd"><summary>Downloads</summary><div class="dd"><a href="../index.html#letoltesek">Downloads</a><a href="../../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download>The full study (PDF)</a><a href="../../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener" download>Executive summary (PDF)</a><a href="../index.html#letoltesek">District summaries</a></div></details><a href="../index.html#modszertan">Method</a><a href="../index.html#gyik">FAQ</a><a href="../index.html#kapcsolat">Contact</a><a class="nav-cta" href="../notify/index.html">I want to take part in the next survey</a></nav>
+    <a class="nav-btn" href="../notify/index.html">I want to take part in the next survey</a>
+    <a class="lang" href="../../adatkezeles/index.html" hreflang="hu" lang="hu" title="Magyar változat">HU</a>
   </div>
 </header>
 
 <main id="top">
-<section class="formpage">
+<section class="legal">
   <div class="wrap">
-    <div class="fp">
-      <div>
-        <span class="eyebrow">Notification</span>
-        <h1>I want to take part in the next survey</h1>
-        <p class="lead">We send one e-mail when the next questionnaire opens and one when the results are published. Nothing else.</p>
-        <a class="back" href="../index.html">Back to the results</a>
-      </div>
-      <form class="you" id="ertesites" name="ertesites" method="POST" action="/" data-netlify="true" netlify-honeypot="website" novalidate>
-          <input type="hidden" name="form-name" value="ertesites">
-          <input type="hidden" name="lang" value="en">
-          <p class="sr" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
-                    <label class="sr" for="em">E-mail address</label>
-          <input type="email" id="em" name="email" placeholder="e-mail address" required autocomplete="email">
-          <fieldset><legend class="chip">I am a…</legend>
-            <label><input type="radio" name="szerep" value="resident" checked> resident</label>
-            <label><input type="radio" name="szerep" value="second-home owner"> second-home owner</label>
-            <label><input type="radio" name="szerep" value="tourism business"> tourism business</label>
-            <label><input type="radio" name="szerep" value="municipality"> municipality</label>
-            <label><input type="radio" name="szerep" value="visitor"> visitor</label>
-            <label><input type="radio" name="szerep" value="other"> other</label>
-          </fieldset>
-          <label class="consent"><input type="checkbox" name="hozzajarulas" id="consent" value="igen" required> <span>I accept the <a href="../privacy/index.html" target="_blank" rel="noopener">privacy notice</a>.</span></label>
-          <button type="submit" class="btn primary">I want to take part</button>
-          <p class="chip" id="ertMsg"></p>
-        </form>
-    </div>
+      <h1>Privacy notice</h1>
+
+      <p class="lead">This notice covers the processing of personal data in connection with the subscription on balatonjohelyindex.hu. The rest of the site can be used without providing personal data.</p>
+
+      <h2>1. The controller</h2>
+      <p><strong>Controller:</strong> NOVITATIS Szolgáltató és Tanácsadó Kft. (Novitatis Ltd.)<br>
+      <strong>Registered address:</strong> 1212 Budapest, Vereckei utca 13., Hungary<br>
+      <strong>E-mail:</strong> info@novitatis.hu<br>
+      <strong>Company registration number:</strong> 01-09-281131<br>
+      <strong>VAT number:</strong> 25541092-2-43</p>
+      <p>The balatonjohelyindex.hu site and the subscriber list are operated and maintained by Novitatis Kft., which is therefore responsible for the processing related to subscriptions. The survey was prepared for the Hungarian Tourism Association Foundation in professional cooperation with VisitBalaton365.</p>
+
+      <h2>2. Data processed and purpose</h2>
+      <p>The data processed are the <strong>e-mail address</strong> given at subscription and the <strong>stakeholder role</strong> selected (resident, second-home owner, tourism business, municipality, visitor or other). No name, phone number or other data is required.</p>
+      <p>The purpose is contact regarding the next measurement: an invitation to complete the next questionnaire when data collection starts, and a notification when the results of the next measurement are published. No newsletters, advertising or other messages are sent, and the e-mail address is not used for any other purpose.</p>
+
+      <h2>3. Legal basis</h2>
+      <p>The legal basis is consent, under Article 6(1)(a) GDPR. Giving consent is voluntary: subscription is not a condition of using the site or downloading the documents. Consent may be withdrawn at any time, which does not affect the lawfulness of processing carried out before the withdrawal.</p>
+
+      <h2>4. Retention period</h2>
+      <p>The e-mail address is stored until the subscription is cancelled or consent is withdrawn. If the series of measurements ends permanently, the list is deleted. On unsubscription or a deletion request the data is erased without delay.</p>
+
+      <h2>5. Processor and transfers</h2>
+      <p>The data is not disclosed to third parties for marketing purposes and is not sold. The form and the hosting of the site are provided by a US-based hosting and form service as a processor, and submitted subscriptions are stored in its system. Transfers to the United States take place under the EU–US Data Privacy Framework, to which the service has certified.</p>
+
+      <h2>6. Rights of the data subject</h2>
+      <p>The data subject may request a copy of the data concerning them, its rectification or erasure, request restriction of processing, object to processing, request the data in a portable format, and withdraw consent at any time. Requests may be submitted to info@novitatis.hu and are answered within one month at the latest.</p>
+
+      <h2>7. Remedies</h2>
+      <p>In the event of unlawful processing, a complaint may be lodged with the Hungarian National Authority for Data Protection and Freedom of Information (1055 Budapest, Falk Miksa utca 9–11., ugyfelszolgalat@naih.hu, +36 1 391 1400), and judicial remedy is also available.</p>
+
+      <h2>8. Cookies</h2>
+      <p>The site uses no analytics or marketing cookies and carries out no profiling. When the map and the fonts load, the browser connects to the providers' servers, which may process the IP address in the course of this.</p>
+
+      <p class="chip">In force from: 18 September 2026. Amendments to this notice are published on this page.</p>
+      <a class="back" href="../index.html">Back to the home page</a>
   </div>
 </section>
 </main>
@@ -469,7 +555,7 @@ h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:man
   </div>
 </div>
 
-<footer id="kapcsolat">
+<footer id="lablec">
   <div class="wrap">
     <div class="fbig"><h2>The next measurement comes in 2027. Change only shows if we measure the same way.</h2></div>
     <div class="fgrid">
@@ -478,31 +564,14 @@ h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:man
         <p>An annual measurement of the state of the Lake Balaton Resort Area as perceived by residents, tourism businesses and visitors. The results are public and comparable from year to year.</p>
       </div>
       <div><strong>Documents</strong><a href="../../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener">Full study (PDF, Hungarian)</a><a href="../../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener">Executive summary (PDF, Hungarian)</a></div>
-      <div><strong>Contact</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a><a href="../privacy/index.html">Privacy notice</a></div>
-      <div><strong>Commissioned by</strong><a class="flogo" href="https://magyarturisztikaiszovetseg.hu" target="_blank" rel="noopener" aria-label="Hungarian Tourism Association Foundation"><img src="../../assets/mtsz-white.png" alt="Hungarian Tourism Association Foundation" width="360" height="360" decoding="async" loading="lazy"></a><strong>Prepared by</strong><a class="flogo" href="https://novitatis.hu/en" target="_blank" rel="noopener" aria-label="Novitatis Kft."><img src="../../assets/novitatis-white.png" alt="Novitatis Kft." width="400" height="92" decoding="async" loading="lazy"></a></div>
+      <div><strong>Contact</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a></div>
+      <div><strong>Commissioned by</strong><span style="display:block;font-size:14.5px;color:var(--light);margin-bottom:14px">Hungarian Tourism Association Foundation</span><strong>Prepared by</strong><a class="flogo" href="https://novitatis.hu/en" target="_blank" rel="noopener" aria-label="Novitatis Kft."><img src="../../assets/novitatis-white.png" alt="Novitatis Kft." width="400" height="92" decoding="async" loading="lazy"></a></div>
     </div>
     <div class="fbot"><span>© 2026 Balaton Good Place Index</span><span>balatonjohelyindex.hu</span></div>
   </div>
 </footer>
 
 <script>
-/* notification form (Netlify Forms, AJAX) */
-(function(){
-  var f=document.getElementById('ertesites'); if(!f) return;
-  var msg=document.getElementById('ertMsg'), btn=f.querySelector('button[type=submit]');
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var em=f.email.value.trim();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Please enter a valid e-mail address.'; f.email.focus(); return; }
-    var ok=f.querySelector('#consent'); if(ok && !ok.checked){ msg.textContent='Please accept the privacy notice to subscribe.'; ok.focus(); return; }
-    btn.disabled=true; msg.textContent='Sending…';
-    var data=new URLSearchParams(new FormData(f)).toString();
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})
-      .then(function(r){ if(!r.ok) throw new Error(r.status);
-        msg.textContent='Thank you! You are on the list. We will send one e-mail when the next survey is published.'; f.email.value=''; f.email.disabled=true; btn.hidden=true; })
-      .catch(function(){ msg.textContent='Sending failed. Please try again, or write to info@visitbalaton365.hu.'; btn.disabled=false; });
-  });
-})();
 (function(){var mb=document.getElementById('menuBtn'),nav=document.getElementById('nav');if(!mb||!nav)return;mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);});nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');mb.setAttribute('aria-expanded','false');}});})();
 </script>
 </body>

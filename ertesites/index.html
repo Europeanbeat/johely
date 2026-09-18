@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Értesítést kérek a következő mérésről — Balaton Jó Hely Index</title>
+<title>Részt veszek a következő mérésben — Balaton Jó Hely Index</title>
 <meta name="description" content="A Balaton Jó Hely Index a Balaton Kiemelt Üdülőkörzet állapotát méri az itt élők, a turisztikai vállalkozások és a vendégek megítélése alapján. A 2026-os alapmérés értéke 64,0 pont, 1048 érvényes válasz alapján.">
 <link rel="canonical" href="https://balatonjohelyindex.hu/ertesites/">
 <link rel="alternate" hreflang="hu" href="https://balatonjohelyindex.hu/ertesites/">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:site_name" content="Balaton Jó Hely Index">
-<meta property="og:title" content="Értesítést kérek a következő mérésről — Balaton Jó Hely Index">
+<meta property="og:title" content="Részt veszek a következő mérésben — Balaton Jó Hely Index">
 <meta property="og:description" content="A 2026-os alapmérés: 64,0 pont. Nyolc részterület, három szereplőcsoport, több mint 1000 válasz a Balaton Kiemelt Üdülőkörzet tizenegy járásából.">
 <meta property="og:url" content="https://balatonjohelyindex.hu/ertesites/">
 <meta property="og:image" content="https://balatonjohelyindex.hu/assets/og-2026.png?v=4">
@@ -402,16 +402,26 @@ footer .fbot{color:var(--light)}
 .formpage .back{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--teal);font-weight:600;text-decoration:none}
 .formpage .back::before{content:"\2190"}
 @media(max-width:900px){.formpage .fp{grid-template-columns:minmax(0,1fr)}}
+
+/* Headings: never hyphenate or split words; balance the lines instead */
+h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+@media(max-width:1360px){header.top nav.main>a,header.top nav.main .nav-dd>summary{padding:0 8px;font-size:12.5px}header.top .nav-btn{padding:0 13px;font-size:13px}header.top .wrap{gap:10px}}
+
+/* Consent line under the form */
+.you .consent{display:flex;gap:10px;align-items:center;margin:4px 0 16px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.you .consent input{margin:0;width:18px;height:18px;flex:none;accent-color:var(--deep);cursor:pointer}
+.you .consent a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.you .consent a:hover{color:var(--deep)}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="../index.html"><span class="mark"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 30c-1 0-9.5-9.6-9.5-16A9.5 9.5 0 0 1 25.5 14c0 6.4-8.5 16-9.5 16z" fill="#0E4A57"/><path d="M10.5 14.2c2-2.2 4.2-2.2 6 0s3.8 2.2 5.6 0" stroke="#B9D8DC" stroke-width="2.2" stroke-linecap="round"/><path d="M11.6 18.2c1.6-1.8 3.4-1.8 4.9 0s3.1 1.8 4.6 0" stroke="#63A8B5" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="brand-name">Balaton<span>Jó Hely Index</span></span></a>
+    <a class="brand" href="../index.html#top"><span class="mark"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 30c-1 0-9.5-9.6-9.5-16A9.5 9.5 0 0 1 25.5 14c0 6.4-8.5 16-9.5 16z" fill="#0E4A57"/><path d="M10.5 14.2c2-2.2 4.2-2.2 6 0s3.8 2.2 5.6 0" stroke="#B9D8DC" stroke-width="2.2" stroke-linecap="round"/><path d="M11.6 18.2c1.6-1.8 3.4-1.8 4.9 0s3.1 1.8 4.6 0" stroke="#63A8B5" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="brand-name">Balaton<span>Jó Hely Index</span></span></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menü</button>
     <nav class="main" id="nav" aria-label="Fő navigáció">
-<a href="../index.html#mi-ez">Az index</a><a href="../index.html#eredmenyek">Eredmények</a><a href="../index.html#nezopontok">Nézőpontok</a><a href="../index.html#jarasok">Járások</a><a href="../index.html#kovetkeztetesek">Következtetések</a><a href="../index.html#modszertan">Módszertan</a><a href="../index.html#gyik">Kérdések</a><a href="../index.html#kapcsolat">Kapcsolat</a><a class="nav-cta" href="#ertesites">Értesítést kérek</a></nav>
-    <a class="nav-btn" href="#ertesites">Értesítést kérek</a>
+<a href="../index.html#mi-ez">Az index</a><a href="../index.html#eredmenyek">Eredmények</a><a href="../index.html#nezopontok">Nézőpontok</a><a href="../index.html#jarasok">Járások</a><a href="../index.html#kovetkeztetesek">Következtetések</a><details class="nav-dd"><summary>Letöltések</summary><div class="dd"><a href="../index.html#letoltesek">Letöltések</a><a href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download>A teljes tanulmány (PDF)</a><a href="../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener" download>Vezetői összefoglaló (PDF)</a><a href="../index.html#letoltesek">Járási összefoglalók</a></div></details><a href="../index.html#modszertan">Módszertan</a><a href="../index.html#gyik">Kérdések</a><a href="../index.html#kapcsolat">Kapcsolat</a><a class="nav-cta" href="#ertesites">Részt veszek a következő mérésben</a></nav>
+    <a class="nav-btn" href="#ertesites">Részt veszek a következő mérésben</a>
     <a class="lang" href="../en/notify/index.html" hreflang="en" lang="en" title="English version">EN</a>
   </div>
 </header>
@@ -422,8 +432,8 @@ footer .fbot{color:var(--light)}
     <div class="fp">
       <div>
         <span class="eyebrow">Értesítés</span>
-        <h1>Értesítést kérek a következő mérésről</h1>
-        <p class="lead">A 2027-es eredmény és a következő kérdőív megjelenéséről egy e-mailt küldünk. Mást nem.</p>
+        <h1>Részt veszek a következő mérésben</h1>
+        <p class="lead">A következő kérdőív indulásakor és az eredmény megjelenésekor küldünk egy-egy e-mailt. Mást nem.</p>
         <a class="back" href="../index.html">Vissza az eredményekhez</a>
       </div>
       <form class="you" id="ertesites" name="ertesites" method="POST" action="/" data-netlify="true" netlify-honeypot="website" novalidate>
@@ -440,7 +450,8 @@ footer .fbot{color:var(--light)}
             <label><input type="radio" name="szerep" value="vendég"> vendég</label>
             <label><input type="radio" name="szerep" value="egyéb"> egyéb</label>
           </fieldset>
-          <button type="submit" class="btn primary">Értesítést kérek</button>
+          <label class="consent"><input type="checkbox" name="hozzajarulas" id="consent" value="igen" required> <span>Elfogadom az <a href="../adatkezeles/index.html" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>.</span></label>
+          <button type="submit" class="btn primary">Részt veszek</button>
           <p class="chip" id="ertMsg"></p>
         </form>
     </div>
@@ -466,7 +477,7 @@ footer .fbot{color:var(--light)}
         <p>A Balaton Kiemelt Üdülőkörzet állapotának éves mérése az itt élők, a turisztikai vállalkozások és a vendégek megítélése alapján. Az eredmények nyilvánosak és évről évre összehasonlíthatók.</p>
       </div>
       <div><strong>Dokumentumok</strong><a href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener">A teljes tanulmány (PDF)</a><a href="../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener">Vezetői összefoglaló (PDF)</a></div>
-      <div><strong>Kapcsolat</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a></div>
+      <div><strong>Kapcsolat</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a><a href="../adatkezeles/index.html">Adatkezelési tájékoztató</a></div>
       <div><strong>Megbízó</strong><a class="flogo" href="https://magyarturisztikaiszovetseg.hu" target="_blank" rel="noopener" aria-label="Magyar Turisztikai Szövetség Alapítvány"><img src="../assets/mtsz-white.png" alt="Magyar Turisztikai Szövetség Alapítvány" width="360" height="360" decoding="async" loading="lazy"></a><strong>Készítette</strong><a class="flogo" href="https://novitatis.hu" target="_blank" rel="noopener" aria-label="Novitatis Kft."><img src="../assets/novitatis-white.png" alt="Novitatis Kft." width="400" height="92" decoding="async" loading="lazy"></a></div>
     </div>
     <div class="fbot"><span>© 2026 Balaton Jó Hely Index</span><span>balatonjohelyindex.hu</span></div>
@@ -482,6 +493,7 @@ footer .fbot{color:var(--light)}
     e.preventDefault();
     var em=f.email.value.trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Kérjük, érvényes e-mail címet adj meg.'; f.email.focus(); return; }
+    var ok=f.querySelector('#consent'); if(ok && !ok.checked){ msg.textContent='A feliratkozáshoz el kell fogadni az adatkezelési tájékoztatót.'; ok.focus(); return; }
     btn.disabled=true; msg.textContent='Küldés…';
     var data=new URLSearchParams(new FormData(f)).toString();
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})

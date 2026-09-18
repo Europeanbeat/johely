@@ -443,7 +443,7 @@ footer .fbot{color:var(--light)}
 .jpdfs li>a:hover{background:var(--deep);color:#fff}
 @media(max-width:700px){.jpdf{flex-wrap:wrap;gap:14px}.jpdf .b{margin-left:0;width:100%;justify-content:center}}
 
-/* Notification form at the bottom of the page (same Netlify form as the form page) */
+/* Notification form at the bottom of the page (same form as on the form page) */
 .contact{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line)}
 .contact .fp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
 .contact .h2{margin-bottom:18px}
@@ -481,6 +481,42 @@ footer .fbot{color:var(--light)}
   #jarasok .jlist .jbtn{flex:1 1 auto;align-content:center}
   #jarasok .jlist .jnote{margin-top:auto}
 }
+
+/* Downloads section */
+#letoltesek .dl2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:28px}
+#letoltesek .dl2 a{display:flex;align-items:center;gap:18px;padding:20px clamp(18px,2.4vw,28px);border:1px solid var(--line);border-radius:var(--r);background:#fff;text-decoration:none;color:inherit}
+#letoltesek .dl2 a:hover{border-color:var(--mid)}
+#letoltesek .dl2 .ic{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--mist);color:var(--deep);font-size:12px;font-weight:700;letter-spacing:.04em}
+#letoltesek .dl2 strong{display:block;font-family:var(--serif);font-size:19px;color:var(--ink)}
+#letoltesek .dl2 span{display:block;margin-top:3px;font-size:14px;color:var(--muted)}
+#letoltesek .dl2 .b{margin-left:auto;flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--deep);color:#fff;font-size:14px;font-weight:600}
+#letoltesek .jpdfs{margin-top:0;padding-top:0;border-top:0}
+@media(max-width:820px){#letoltesek .dl2{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){#letoltesek .dl2 a{flex-wrap:wrap;gap:12px}#letoltesek .dl2 .b{margin-left:0;width:100%;justify-content:center}}
+
+/* Downloads dropdown in the navigation */
+header.top nav.main .nav-dd{position:relative}
+header.top nav.main .nav-dd>summary{display:flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;color:var(--ink);cursor:pointer;list-style:none;white-space:nowrap}
+header.top nav.main .nav-dd>summary::-webkit-details-marker{display:none}
+header.top nav.main .nav-dd>summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+header.top nav.main .nav-dd[open]>summary,header.top nav.main .nav-dd>summary:hover{background:var(--deep);color:#fff}
+header.top nav.main .nav-dd .dd{position:absolute;left:0;top:calc(100% + 10px);min-width:260px;padding:8px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(18,32,40,.12);display:flex;flex-direction:column;gap:2px;z-index:70}
+header.top nav.main .nav-dd .dd a{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:12px;font-size:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
+header.top nav.main .nav-dd .dd a:hover{background:var(--soft)}
+@media(max-width:1180px){
+  header.top nav.main .nav-dd .dd{position:static;min-width:0;border:0;box-shadow:none;padding:0 0 0 12px}
+  header.top nav.main .nav-dd>summary{padding:12px 16px;font-size:15px}
+}
+
+/* Headings: never hyphenate or split words; balance the lines instead */
+h1,h2,h3,.h2,.hero h1,.intro .h2,#letoltesek .dl2 strong,.jdetail h3{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+@media(max-width:1360px){header.top nav.main>a,header.top nav.main .nav-dd>summary{padding:0 8px;font-size:12.5px}header.top .nav-btn{padding:0 13px;font-size:13px}header.top .wrap{gap:10px}}
+
+/* Consent line under the form */
+.you .consent{display:flex;gap:10px;align-items:center;margin:4px 0 16px;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.you .consent input{margin:0;width:18px;height:18px;flex:none;accent-color:var(--deep);cursor:pointer}
+.you .consent a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.you .consent a:hover{color:var(--deep)}
 </style>
 </head>
 <body>
@@ -490,8 +526,8 @@ footer .fbot{color:var(--light)}
     <a class="brand" href="#top"><span class="mark"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 30c-1 0-9.5-9.6-9.5-16A9.5 9.5 0 0 1 25.5 14c0 6.4-8.5 16-9.5 16z" fill="#0E4A57"/><path d="M10.5 14.2c2-2.2 4.2-2.2 6 0s3.8 2.2 5.6 0" stroke="#B9D8DC" stroke-width="2.2" stroke-linecap="round"/><path d="M11.6 18.2c1.6-1.8 3.4-1.8 4.9 0s3.1 1.8 4.6 0" stroke="#63A8B5" stroke-width="2.2" stroke-linecap="round"/></svg></span><span class="brand-name">Balaton<span>Good Place Index</span></span></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="main" id="nav" aria-label="Main navigation">
-<a href="#mi-ez">The index</a><a href="#eredmenyek">Results</a><a href="#nezopontok">Perspectives</a><a href="#jarasok">Districts</a><a href="#kovetkeztetesek">Conclusions</a><a href="#modszertan">Method</a><a href="#gyik">FAQ</a><a href="#kapcsolat">Contact</a><a class="nav-cta" href="notify/index.html">Notify me</a></nav>
-    <a class="nav-btn" href="notify/index.html">Notify me</a>
+<a href="#mi-ez">The index</a><a href="#eredmenyek">Results</a><a href="#nezopontok">Perspectives</a><a href="#jarasok">Districts</a><a href="#kovetkeztetesek">Conclusions</a><details class="nav-dd"><summary>Downloads</summary><div class="dd"><a href="#letoltesek">Downloads</a><a href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download>The full study (PDF)</a><a href="../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener" download>Executive summary (PDF)</a><a href="#letoltesek">District summaries</a></div></details><a href="#modszertan">Method</a><a href="#gyik">FAQ</a><a href="#kapcsolat">Contact</a><a class="nav-cta" href="notify/index.html">I want to take part in the next survey</a></nav>
+    <a class="nav-btn" href="notify/index.html">I want to take part in the next survey</a>
     <a class="lang" href="../index.html" hreflang="hu" lang="hu" title="Magyar változat">HU</a>
   </div>
 </header>
@@ -511,7 +547,7 @@ footer .fbot{color:var(--light)}
       <span class="tag">2026 · baseline survey</span>
       <h1 id="h1">How do we see <em>Lake Balaton?</em></h1>
       <p class="lead">Guest nights tell you how many people stayed in a destination. They don't tell you how those people felt. The Balaton Good Place Index measures the state of the whole Lake Balaton Resort Area — not in traffic or revenue, but in how residents, tourism businesses and visitors experience the region. A shared yardstick, so that Balaton becomes a better place year after year.</p>
-      <div class="cta"><a class="btn primary" href="#eredmenyek">The results</a><a class="btn ghost" href="#modszertan">How we measure</a></div>
+      <div class="cta"><a class="btn primary" href="#eredmenyek">The results</a><a class="btn ghost" href="#modszertan">How we measure</a><a class="btn ghost" href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download>Download the study</a></div>
       <div class="facts">
         <div><span class="num" id="fValasz">—</span><span class="chip">valid responses</span></div>
         <div><span class="num" id="fKerdes">—</span><span class="chip">questions, 8 dimensions</span></div>
@@ -643,11 +679,11 @@ footer .fbot{color:var(--light)}
     </div>
     <div id="jpdfone"></div>
     <p class="warn">The ranking should be read with care. The seven districts are spread across twelve points in total, far less than the thirty-eight points between the dimensions. The two leading districts are less than one point apart, which is within what the measurement can distinguish. The two ends of the field are interpretable — the Keszthely and Balatonfüred districts above the regional average, the Siófok and especially the Tapolca district below it — the positions in between are not. In the four missing districts the result is not poor; the data is scarce.</p>
-    <div class="jpdfs" id="jpdfs"></div>
   </div>
 </section>
 
 <!-- ── Questions ────────────────────────────────────────── -->
+
 <section id="kerdesek">
   <div class="wrap">
     <div class="intro">
@@ -858,14 +894,27 @@ footer .fbot{color:var(--light)}
   </div>
 </section>
 
+<section id="letoltesek">
+  <div class="wrap">
+    <div class="intro">
+      <span class="eyebrow">Downloads</span>
+      <h2 class="h2">Documents to download</h2>
+      <p class="lead">The full study, the executive summary and the seven district summaries, all as PDFs (Hungarian).</p>
+    </div>
+    <div class="dl2">
+      <a href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener" download><span class="ic">PDF</span><span><strong>The full study</strong><span>168 pages · PDF, Hungarian</span></span><span class="b">Download PDF</span></a>
+      <a href="../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener" download><span class="ic">PDF</span><span><strong>Executive summary</strong><span>12 pages · PDF, Hungarian</span></span><span class="b">Download PDF</span></a>
+    </div>
+    <div class="jpdfs" id="jpdfs"></div>
+  </div>
+</section>
 <section id="kapcsolat" class="contact">
   <div class="wrap">
     <div class="fp">
       <div>
         <span class="eyebrow">Contact</span>
-        <h2 class="h2">Notify me about the next survey</h2>
-        <p class="lead">We will send one e-mail when the 2027 results and the next questionnaire are published. Nothing else.</p>
-        <a class="mailto" href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a>
+        <h2 class="h2">I want to take part in the next survey</h2>
+        <p class="lead">We send one e-mail when the next questionnaire opens and one when the results are published. Nothing else.</p>
       </div>
       <form class="you" id="ertesites" name="ertesites" method="POST" action="/" data-netlify="true" netlify-honeypot="website" novalidate>
           <input type="hidden" name="form-name" value="ertesites">
@@ -881,7 +930,8 @@ footer .fbot{color:var(--light)}
             <label><input type="radio" name="szerep" value="visitor"> visitor</label>
             <label><input type="radio" name="szerep" value="other"> other</label>
           </fieldset>
-          <button type="submit" class="btn primary">Notify me</button>
+          <label class="consent"><input type="checkbox" name="hozzajarulas" id="consent" value="igen" required> <span>I accept the <a href="privacy/index.html" target="_blank" rel="noopener">privacy notice</a>.</span></label>
+          <button type="submit" class="btn primary">I want to take part</button>
           <p class="chip" id="ertMsg"></p>
         </form>
     </div>
@@ -908,8 +958,8 @@ footer .fbot{color:var(--light)}
         <p>An annual measurement of the state of the Lake Balaton Resort Area as perceived by residents, tourism businesses and visitors. The results are public and comparable from year to year.</p>
       </div>
       <div><strong>Documents</strong><a href="../docs/balaton-jo-hely-index-2026.pdf" target="_blank" rel="noopener">Full study (PDF, Hungarian)</a><a href="../docs/balaton-jo-hely-index-2026-vezetoi-osszefoglalo.pdf" target="_blank" rel="noopener">Executive summary (PDF, Hungarian)</a></div>
-      <div><strong>Contact</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a></div>
-      <div><strong>Commissioned by</strong><a class="flogo" href="https://magyarturisztikaiszovetseg.hu" target="_blank" rel="noopener" aria-label="Hungarian Tourism Association Foundation"><img src="../assets/mtsz-white.png" alt="Hungarian Tourism Association Foundation" width="360" height="360" decoding="async" loading="lazy"></a><strong>Prepared by</strong><a class="flogo" href="https://novitatis.hu/en" target="_blank" rel="noopener" aria-label="Novitatis Kft."><img src="../assets/novitatis-white.png" alt="Novitatis Kft." width="400" height="92" decoding="async" loading="lazy"></a></div>
+      <div><strong>Contact</strong><a href="mailto:info@visitbalaton365.hu">info@visitbalaton365.hu</a><a href="privacy/index.html">Privacy notice</a></div>
+      <div><strong>Commissioned by</strong><span style="display:block;font-size:14.5px;color:var(--light);margin-bottom:14px">Hungarian Tourism Association Foundation</span><strong>Prepared by</strong><a class="flogo" href="https://novitatis.hu/en" target="_blank" rel="noopener" aria-label="Novitatis Kft."><img src="../assets/novitatis-white.png" alt="Novitatis Kft." width="400" height="92" decoding="async" loading="lazy"></a></div>
     </div>
     <div class="fbot"><span>© 2026 Balaton Good Place Index</span><span>balatonjohelyindex.hu</span></div>
   </div>
@@ -1045,7 +1095,7 @@ var ONE = {
   var JPDF={'Keszthely district':'../docs/jarasok/balaton-jo-hely-index-2026-keszthely.pdf','Balatonfüred district':'../docs/jarasok/balaton-jo-hely-index-2026-balatonfured.pdf','Fonyód district':'../docs/jarasok/balaton-jo-hely-index-2026-fonyod.pdf','Veszprém district':'../docs/jarasok/balaton-jo-hely-index-2026-veszprem.pdf','Balatonalmádi district':'../docs/jarasok/balaton-jo-hely-index-2026-balatonalmadi.pdf','Siófok district':'../docs/jarasok/balaton-jo-hely-index-2026-siofok.pdf','Tapolca district':'../docs/jarasok/balaton-jo-hely-index-2026-tapolca.pdf'};
   function pdfRow(nev){var file=JPDF[nev]; if(!file) return ''; return '<div class="jpdf"><span class="ic">PDF</span><div><strong>Download the district summary</strong><span class="s">'+esc(nev)+''+'</span></div>'+'<a class="b" href="'+file+'" target="_blank" rel="noopener" download>Download PDF</a>'+'</div>';}
   (function(){var box=document.getElementById('jpdfs'); if(!box) return; var names=D.jarasok.map(function(x){return x.nev;}).filter(function(n){return !!JPDF[n];}).sort(function(a,b){return a.localeCompare(b,'en');});
-    box.innerHTML='<strong>District summaries (PDF, Hungarian)</strong><p>A summary is available for the seven districts with a valid index. The four remaining districts have none.</p><ul>'+names.map(function(n){var file=JPDF[n]; return '<li>'+'<a href="'+file+'" target="_blank" rel="noopener" download>'+esc(n)+'</a>'+'</li>';}).join('')+'</ul>';})();
+    box.innerHTML='<strong>District summaries</strong><p>A profile of each of the seven districts with a valid index. The four remaining districts have none.</p><ul>'+names.map(function(n){var file=JPDF[n]; return '<li>'+'<a href="'+file+'" target="_blank" rel="noopener" download>'+esc(n)+'</a>'+'</li>';}).join('')+'</ul>';})();
   function show(nev){ showBase(nev); var one=document.getElementById('jpdfone'); if(one) one.innerHTML=pdfRow(nev); }
   function showBase(nev){
     var j=D.jarasok.filter(function(x){return x.nev===nev;})[0]; if(!j) return;
@@ -1099,6 +1149,7 @@ var ONE = {
     e.preventDefault();
     var em=f.email.value.trim();
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Please enter a valid e-mail address.'; f.email.focus(); return; }
+    var ok=f.querySelector('#consent'); if(ok && !ok.checked){ msg.textContent='Please accept the privacy notice to subscribe.'; ok.focus(); return; }
     btn.disabled=true; msg.textContent='Sending…';
     var data=new URLSearchParams(new FormData(f)).toString();
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})
